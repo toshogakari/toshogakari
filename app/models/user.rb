@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # model relation
-  has_many :books_users
+  has_many :reading
   has_many :books, through: :books_users
 
   # login getter and setter
