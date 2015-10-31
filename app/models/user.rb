@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  # model relation
+  has_many :readings
+  has_many :books, through: :readings
 
   # login getter and setter
     attr_accessor :login

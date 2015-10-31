@@ -93,6 +93,7 @@ RSpec.configure do |config|
 =end
   config.color = true
   # CodeClimate::TestReporter.start unless ENV['CODECLIMATE_REPO_TOKEN'].nil?
-  CodeClimate::TestReporter.start if ENV['CODECLIMATE_REPO_TOKEN'].present? && ENV['TRAVIS_BRANCH'] == "master"
+  # 様子見
+  # CodeClimate::TestReporter.start if ENV['CODECLIMATE_REPO_TOKEN'].present? && ENV['TRAVIS_BRANCH'] == "master"
 
 end
