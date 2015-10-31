@@ -1,0 +1,23 @@
+language: ruby
+rvm:
+- 2.2.2
+bundler_args: "--without development production"
+before_install:
+- gem update --system
+- gem --version
+script:
+- bundle exec rake db:drop db:create db:migrate
+- bundle exec rspec spec
+deploy:
+  provider: heroku
+  api_key:
+    secure: q90aYNE8MkeX6kAebStfq391v9sWhQkz+j9/pEonkvKmnGD4b47JwY8W4haPsKqD9G+yBNVWu5GmQgOj/QiAU9GnSOZqahN7QM0eESrMTTIcIwg+to99KdoEe4/NBWI8+wCMc5eloI1qzBqLG69URwu2RUwnhlPtMrqM3sT3/R2f2rMnZ55S56pDK979cuHtOc1BSNp5Z5fyV0k7MFrfCvI3JzDchec6Qc5bsH/VD8vZc2cakS9zB9BvaDdimM0JRqn9NTmFiV6U/CzMpfG/G+ph9HjMUo8O1ZlS4p1Ke1eiYcMqtQK6ZdObaPiyIVU8pHC0ZYwB51YdmNYV3kcRFztfqEfR49ElS8b0QJ2WbrQZ/pnqp33E7qkObkCsggCGgQULlQIvgygnkMfp36jBWCbvDi3juiUTUdRpibOyhqO7m0f3o0gCN3lWR1pzwmrfRnXJE7t9qv+oD0QRUZoZNBbuzwR0284jyaPL95WR+nNfZIw+ioI9Wb312m/0erIKkQqWkfd8rbxZUaItY/B8xcSay6fIQBgJRjx1NgOxGpdmG0lO/2vH5fbcLybqPh3BcWHKfn530Ux0aXktjsqbshRiQ9sP8yaCQyWlrfcQDRsY+3wM5C+QoR3BRYiufhfwgN2v9hh/M55ZorbP67wRdRCBqohopKGli0Ojz3dw+dk=
+  app: toshogakari
+  on:
+    repo: toshogakari/toshogakari
+    branch: master
+  run:
+  - rake db:migrate
+notifications:
+  slack:
+    secure: VDR1Izj5uMt/9O4p5LZ/dUXqxvTSWCkgpU6QSRjrDjTV0el1zaLmYDapIzHcd7MMCsoeGnKgHQjp4dMyFnBxX9JhYc8gYnUSzQ+O4ryxmmZL4wTcQVY5ms2TvgRWqkxWPuka/zbI29LvZTUXx8gdbCphTvGZa21EP4PdIyCwazngXljg2leWJw/QRN547Djnc5+MF3rLvetqeLBkoNfg0Gi6ADFZ5gDSvfiqPQxSt6x/ZDxnNm+XbBYpJEPApwpKLFJ21dpvRahbb4EpAlkuCkgAfV/V8gvb3i66XTrRMLM7/2JM/qh54IEslKDerOqo9Hr0E+PIlVAUKLBNY9CBinwnEayOYxCX3F5y3ei2QRD23/cYdZ8c866X0K3823JLcGhyF7Fs+N/62RM3sA3Zaa23eaNuK3eskMRlmmMiAMuuTjEpY+9AjqonOZM4IzQHLXcmtJ1wUXhztq1xDrlIPaT0QCs31eGMQIesQqZN234XCZr9clC8b5sFeq94O6x48gep+nrqbqWPbgh3f3qkhlc0ACsQVubnSqBvmTuVO7HiU+XrlKWDrvKvLl7r3qMwEUBrRww9AQkfEuEgspG3XKJ5FXGWFsn/pBh1GqMJ4P8UWH9JdwrE1pjHq+tikPW5fm9L3rQznzm/UcKrLt/3V59xrljijIQq4XRQyZnUc70=
