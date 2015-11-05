@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :nickname, :password, :password_confirmation, :current_password) }
   end
 
+  # devise redirect URLs after sign in
+  def after_sign_in_path_for(resource)
+    users_path
+  end
 end

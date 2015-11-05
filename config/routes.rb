@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, path: "accounts"
 
   root 'test#index'
   resources :books
+
+  resources :users, param: :nickname, only: [:index, :show]# do
+    # resources :books, only: [:index]
+  # end
 
   # devise_for :users, only: :none do
   #   :registrations => 'users/registrations',
