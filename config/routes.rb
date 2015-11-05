@@ -1,9 +1,32 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, path: "accounts"
 
   root 'test#index'
   resources :books
-  
+
+  resources :users, param: :nickname, only: [:index, :show]# do
+    # resources :books, only: [:index]
+  # end
+
+  # devise_for :users, only: :none do
+  #   :registrations => 'users/registrations',
+  #       :sessions => 'users/sessions'
+  # end
+
+  # devise_scope :users do
+
+  # end
+  # resource :user, param: :nickname, controller: "devise/registrations", except: [:index, :show], as: :user_registration
+  # resource :user, param: :nickname, controller: "users", only: [:index, :show]
+
+  # namespace :user, param: :nickname do
+  #   resource :password, controller: "devise/passwords", except: [:index, :show, :destroy]
+  #   resource :session, controller: "devise/sessions", only: [:create, :new]
+  # end
+  #
+  # match "user/:nickname/session", controller: "devise/sessions", action: "destroy", via: "get", as: "destroy_user_session"
+  #
+  # root 'top#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
