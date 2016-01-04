@@ -42,7 +42,7 @@ gem 'devise'
 # gem 'httpclient'
 
 # rbooks
-# gem 'rbooks', :git => 'https://github.com/toshogakari/rbooks.git'
+gem 'rbooks', :git => 'https://github.com/toshogakari/rbooks.git'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/toshogakari/rbooks.git
+  revision: aa47d847ddadbd0ca675e6ef04d4169cd176c5a1
+  specs:
+    rbooks (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -310,6 +316,7 @@ DEPENDENCIES
   rails-erd
   rails_12factor
   rb-fsevent
+  rbooks!
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -323,4 +330,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.4
+   1.10.5
