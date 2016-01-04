@@ -25,7 +25,21 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(book_params)
+    search = RBooks::Search.new(1076114325239656110)
+    result = search.get do |b|
+      b[:isbn] = params['book']['isbn']
+      b[:formatVersion] = 2
+    end
+    p result
+
+    #@book = Book.new(book_params)
+    @book = Book.find_or_create_by(isbn: result['Items'][0]['isbn']) do |b|
+      b.title = result['Items'][0]['title']
+      b.author = result['Items'][0]['author']
+      b.publisher = result['Items'][0]['publisherName']
+    end
+
+    @book.users << current_user unless @book.users.exists?(id: current_user.id)
 
     respond_to do |format|
       if @book.save
@@ -70,6 +84,6 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:isbn, :title, :author, :publisher)
+      params.require(:book).permit(:isbn)
     end
 end
